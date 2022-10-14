@@ -1,0 +1,43 @@
+#include "cache.h"
+#include <fstream>
+
+ofstream myfile;
+
+#define DEBUG 0
+
+void CACHE::stlb_prefetcher_initialize() 
+{
+	//cout << "CPU " << cpu << " STLB -- Trace creator prefetcher" << endl;
+	//myfile.open("test11.txt");
+}
+
+void CACHE::stlb_prefetcher_operate(uint64_t addr, uint64_t ip, uint8_t cache_hit, uint8_t type, int answer, int warmup, int * free_indexes, uint64_t instr_id, int iflag, uint64_t curr_cycle){
+	assert(type != PREFETCH); // The instr_id is currently set to 0 for all prefetches
+	if (instr_id == 0) return;
+	//iflag is not really iflag its hit/miss flag
+	//myfile << dec << instr_id << ", " << hex << addr << ", " << ip <<  ", " << iflag << endl;
+	cout << dec << instr_id << ", " << curr_cycle << ", " << hex << addr << ", " << ip <<  ", " << iflag << endl;
+}
+
+void CACHE::stlb_prefetcher_cache_fill(uint64_t addr, uint32_t set, uint32_t way, uint8_t prefetch, uint64_t evicted_addr)
+{
+
+}
+
+void CACHE::stlb_prefetcher_final_stats(uint64_t prefetches, uint64_t hits, uint64_t misses, uint64_t swap, uint64_t dupli, uint64_t free, uint64_t real, uint64_t * mmu_cache_demand_hits, uint64_t * mmu_cache_prefetch_hits, uint64_t * rfhits, uint64_t * free_hits, uint64_t mr[4][4], uint64_t stlb_misses[2])
+{/*
+	cout << endl << "*******************************************" << endl;
+	cout << "CPU " << cpu << " STLB -- L2-TLB Prefetcher final stats" << endl;
+	cout << "*******************************************" << endl;
+
+	cout << endl << "-------------------------------------------" << endl;
+	cout << "D-STLB MISSES: " << stlb_misses[0] << endl;
+	cout << "I-STLB MISSES: " << stlb_misses[1] << endl;
+	cout << "-------------------------------------------" << endl;
+
+	cout << endl << "-------------------------------------------" << endl;
+	cout << "PQ hits: " << hits << endl; 
+	cout << "PQ misses: " << misses << endl;
+	cout << "-------------------------------------------" << endl;
+	//myfile.close();*/
+}
